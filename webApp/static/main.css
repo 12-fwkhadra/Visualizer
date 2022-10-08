@@ -1,0 +1,275 @@
+
+body{
+  overflow: hidden;
+}
+a{
+  color: black;
+  text-decoration: none;
+}
+a:focus{
+  color: black;
+}
+a:active{
+  color: black;
+}
+.title{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title p{
+  font-size: 10px;
+  color: palevioletred;
+  animation-name: textzoom;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes textzoom {
+  0%{
+    font-size: 10px;
+  }
+  100%{
+    font-size: 70px;
+    font-weight: bolder;
+  }
+}
+
+
+#bino{
+  color: lightblue;
+  animation: discover 4s infinite;
+}
+@keyframes discover {
+0% {
+      transform: translateX(50px) rotateY(0deg);
+    }
+    49% {
+      transform: translateX(300px) rotateY(0deg);
+    }
+    50% {
+      transform: translateX(300px) rotateY(360deg);
+    }
+    100% {
+      transform: translateX(50px) rotateY(360deg);
+    }
+}
+
+.ball {
+  border-radius: 25px;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  animation: mycircle 5s linear;
+  animation-fill-mode: forwards;
+}
+@keyframes mycircle{
+  0%{
+    transform:rotate(0deg)
+              translate(-165px)
+              rotate(0deg);
+  }
+  100%{
+    transform:rotate(360deg)
+              translate(-165px)
+              rotate(-360deg);
+  }
+}
+#circle, #circle2 {
+
+    background: lightblue;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    content: '';
+    position: absolute;
+  left: 50%;
+  top: 50%;
+}
+#circle3, #circle4, #circle5{
+
+      background: lightblue;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    content: '';
+    position: absolute;
+  left: 50%;
+  top: 50%;
+}
+#circle p, #circle2 p{
+  text-align: center;
+  padding: 45px;
+}
+#circle3 p, #circle4 p, #circle5 p{
+    text-align: center;
+  padding: 45px;
+}
+
+#circle {
+  offset-path: path("M-100,-100 C100,200 -10,-10 800,800");
+  animation: move 3000ms ease-in-out;
+  animation-fill-mode: forwards
+}
+
+@keyframes move {
+  0% {
+    translate: 100px 100px;
+    scale: 0.5;
+  }
+  50%{
+    translate: 30px 50px;
+  }
+  100%{
+    translate: -5px -50px;
+    rotate:300deg;
+  }
+}
+#circle2 {
+  animation: move2 3s ;
+    animation-fill-mode: forwards;
+}
+@keyframes move2 {
+  0% {
+    transform: translate(0, 0);
+    transform: scale(-0.5);
+  }
+  100% {
+    transform: translate(-110px, -200px);
+  }
+}
+#circle3 {
+  clip-path: circle(25%);
+  transition: clip-path 1s;
+  animation: circle 3s;
+  transform: translate(-50px, -135px);
+
+}
+@keyframes circle {
+  0% { clip-path: circle(75%); }
+  50% { clip-path: circle(25%); }
+  100% { clip-path: circle(25%); }
+}
+#circle4 {
+  animation: loader 5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes loader {
+  0% {
+    translate: 200px -150px;
+    background-color: lightpink;
+  }
+  100%{
+    translate: -120px 40px;
+    scale: -1;
+    rotate:180deg;
+  }
+}
+#circle5 {
+  animation: zoom-out 5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes zoom-out {
+  0% {
+    transform: scale(1.5, 1.5);
+  }
+  100% {
+    translate: 55px -160px;
+    transform: scale(1, 1);
+  }
+
+}
+
+
+svg {
+  height: 100vmin;
+  left: calc(50% - 50vmin);
+  position: relative;
+  width: 100vmin;
+}
+
+.ball-top {
+  animation: BallTopMove 4s both;
+  motion-path: path("m 66.2,39.264578 c 0,0 -5.195345,-18.056477 -20.4,-18.056477 -15.204655,0 -20.4,17.930208 -20.4,17.930208");
+  offset-path: path("m 66.2,39.264578 c 0,0 -5.195345,-18.056477 -20.4,-18.056477 -15.204655,0 -20.4,17.930208 -20.4,17.930208");
+  motion-offset: 0%;
+  offset-distance: 0%;
+}
+
+.ball-bottom {
+  animation: BallBottomMove 4s both;
+  motion-path: path("m 66.2,58.979615 c 0,0 -5.195345,18.056477 -20.4,18.056477 -15.204655,0 -20.4,-17.930208 -20.4,-17.930208");
+  offset-path: path("m 66.2,58.979615 c 0,0 -5.195345,18.056477 -20.4,18.056477 -15.204655,0 -20.4,-17.930208 -20.4,-17.930208");
+  motion-offset: 100%;
+  offset-distance: 100%;
+}
+
+.thinkMaskCircle {
+  animation: ClipSmallMove 4s both ;
+}
+
+.createMaskCircle {
+  animation: ClipBigMove 4s both ;
+}
+
+@keyframes BallTopMove {
+  0% {
+    motion-offset: 0%;
+    offset-distance: 0%;
+    transform: scale(0);
+  }
+  10% { transform: scale(1); }
+  42.5% { transform: scale(1); }
+  50% {
+    motion-offset: 100%;
+    offset-distance: 100%;
+    transform: scale(0);
+  }
+  100% {
+    motion-offset: 100%;
+    offset-distance: 100%;
+    transform: scale(0);
+  }
+}
+
+@keyframes BallBottomMove {
+  0% {
+    motion-offset: 100%;
+    offset-distance: 100%;
+    transform: scale(0);
+  }
+  50% {
+    motion-offset: 100%;
+    offset-distance: 100%;
+    transform: scale(0);
+  }
+  60% { transform: scale(1); }
+  92.5% { transform: scale(1); }
+  100% {
+    motion-offset: 0%;
+    offset-distance: 0%;
+    transform: scale(0);
+  }
+}
+
+@keyframes ClipSmallMove {
+  0% { transform: translateY(-63%); }
+  17.5% { transform: translateY(-63%); }
+  50% { transform: translateY(0%); }
+  62.5% { transform: translateY(0%); }
+
+}
+
+@keyframes ClipBigMove {
+  0% { transform: translateY(0%); }
+  17.5% { transform: translateY(-63%); }
+  50% { transform: translateY(-63%); }
+  62.499% { transform: translateY(-63%); }
+  62.5% { transform: translateY(0%); }
+
+}

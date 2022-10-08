@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Sentiments{% endblock %}
+{% block subtitle %}Sentimental Analysis{% endblock %}
+ {% block content %}
+        <div class="col-xs-10 col-sm-6 col-md-6">
+            <div class="card card-style mb-2">
+                <h4>Tweets' Emotions Analysis</h4>
+                <h6>The percentages of the positive, neutral & negative Tweets respectively</h6>
+
+                <div class="card-body">
+                    <i class="far fa-smile fa-5x" style="color:#006400;"><div class="fs-3 ms-1" id="pos"></div></i>
+                    <i class="far fa-meh fa-5x" style="color: #FFFF00"><div class="fs-3 ms-1" id="neu"></div></i>
+                    <i class="far fa-frown fa-5x" style="color:#FF0000;"><div class="fs-3 ms-1" id="neg"></div></i>
+                </div>
+                <table style="width:50%;">
+                    <tr>
+                        <td>Top Positive Tweet:</td>
+                        <td id="top_pos"></td>
+                    </tr>
+                    <tr>
+                        <td>Top Negative Tweet:</td>
+                        <td id="top_neg"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    <script>
+            fetch('/percentages', {method: 'GET'})
+        .then(res => res.json())
+        .then(result =>{
+            let pos = result[0]+'%'
+            let neg = result[1]+'%'
+            let neu = result[2]+'%'
+            let top_pos = result[3][1]['pos']
+            let top_neg = result[3][0]['neg']
+            document.getElementById("pos").innerHTML = pos;
+            document.getElementById("neg").innerHTML = neg;
+            document.getElementById("neu").innerHTML = neu;
+            document.getElementById("top_pos").innerHTML = top_pos;
+            document.getElementById("top_neg").innerHTML = top_neg;
+            }
+        )
+    </script>
+ {% endblock %}

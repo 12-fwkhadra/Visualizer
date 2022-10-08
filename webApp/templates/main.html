@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="../static/main.css">
+    <link rel="stylesheet" href="../static/borders.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+        <div id="top_border" style="display: flex; flex-wrap: wrap;">
+            <div style="flex:50%;">
+                <i class="fas fa-spinner fa-spin fa-3x" style="color: lightblue;"></i>
+                <div class="waviy2">
+                   <span style="--i:1">F</span>
+                   <span style="--i:2">E</span>
+                   <span style="--i:3">T</span>
+                   <span style="--i:4">C</span>
+                   <span style="--i:5">H</span>
+                </div>
+            </div>
+            <div style="flex: 50%; text-align: right;">
+                <i id="bino" class="fas fa-binoculars fa-3x"></i>
+                 <div class="waviy">
+                   <span style="--i:1">V</span>
+                   <span style="--i:2">i</span>
+                   <span style="--i:3">s</span>
+                   <span style="--i:4">u</span>
+                   <span style="--i:5">a</span>
+                   <span style="--i:6">l</span>
+                   <span style="--i:7">i</span>
+                   <span style="--i:8">z</span>
+                     <span style="--i:8">e</span>
+                  </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="title"><p id="btn" style="color: palevioletred">Visualizer</p></div>
+            <div class="sphere">
+            <div id="circle"><a href='/Languages'><p>Languages</p></a></div>
+            <div id="circle2"><a href="/Countries"><p>Countries</p></a></div>
+            <div id="circle3"><a href='/Hashtags'><p>Hashtags</p></a></div>
+            <div id="circle4"><a href='/sentimentals'><p>Sentiments</p></a></div>
+            <div id="circle5"><a href='/Dashboard'><p>Dashboard</p></a></div>
+        </div>
+        </div>
+
+
+        <div>
+            <div class="line" style="left:0; bottom: 0px; position: absolute; margin-left: 0.5rem;">
+                      <i id="import" class="fas fa-file-import fa-3x"></i>
+                    <h2 class='lineUp'>IMPORT DATA</h2>
+            </div>
+            <h1 style="right:0;bottom: 0; position:absolute; text-align: right;">
+                <i id="searcher" class="fas fa-search fa-2x" style="margin-right:9%;"></i>
+                <div id="1">
+                    <span style="margin-right: 0.5rem;">ANALYZE</span>
+                </div>
+
+            </h1>
+        </div>
+
+
+<script>
+    Splitting({
+	whitespace: true
+})
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+</body>
+</html>

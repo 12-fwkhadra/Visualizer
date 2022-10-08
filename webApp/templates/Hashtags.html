@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Hashtags{% endblock %}
+{% block subtitle %}Hashtags Analysis{% endblock %}
+ {% block content2 %}
+        <div class="col-xs-10 col-sm-6 col-md-6">
+            <div class="card card-style mb-2">
+                <div class="card-body">
+                    <div class="chart-container" style="position: relative;">
+                        <div id="hashtags"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+     <script>
+         $.getJSON("/hashtags", function (data) {
+                hash_reader(data)
+                console.log(data)
+            });
+            function hash_reader(data) {
+                Highcharts.chart('hashtags', {
+                    accessibility: {
+                        screenReaderSection: {
+                            beforeChartFormat: '<h5>{chartTitle}</h5>' +
+                                '<div>{chartSubtitle}</div>' +
+                                '<div>{chartLongdesc}</div>' +
+                                '<div>{viewTableButton}</div>'
+                        }
+                    },
+                    series: [{
+                        type: 'wordcloud',
+                        data,
+                        name: 'Occurrences'
+                    }],
+                    title: {
+                        text: 'Top Hashtags'
+                    },
+                    subtitle: {
+                        text: '2018-2019'
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size: 16px"><b>{point.key}</b></span><br>'
+                    }
+                });
+            };
+     </script>
+{% endblock %}

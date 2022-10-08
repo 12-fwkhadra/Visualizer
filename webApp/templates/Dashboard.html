@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+ {% block content3 %}
+
+
+            <div class="btn-toolbar">
+                <div class="btn-group" style="right: 0%; position:absolute; margin-right: 1rem;">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-outline-secondary rounded" style="color:palevioletred;">Export</button>
+                        <button type="button" class="btn btn-outline-secondary rounded" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" style="color:palevioletred;">
+                            Filter
+                        </button>
+                    </div>
+
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                         aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Filter</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <form class="d-flex" method="POST">
+                                <select name="topic_to_select">
+                                    {% for o in data %}
+                                        <option value="{{ o.name }}">{{ o.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <button class="btn btn-outline-secondary" type="submit" href="#">Visualize</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="row">
+            <div class="col-xl-3 col-md-5 mb-4 mt-2 ms-3">
+                        <div class="card border-end-0 border-warning border-4  shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2 ps-3">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            Total Tweets</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="total_count"></div>
+                                    </div>
+                                    <div class="col-auto pe-5">
+                                        <i class="fas fa-comments fa-3x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+            <div class="col-xl-3 col-md-5 mb-4 mt-2 ms-3">
+                        <div class="card border-success border-4 border-start-0 shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2 ps-3">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Number of Users</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="nb_of_users"></div>
+                                        <div class="h5 mb-0 fs-5 text-gray-800"><a id="top_talker">Top Talker</a></div>
+                                    </div>
+                                    <div class="col-auto pe-5">
+                                        <i class="fas fa-sort-numeric-up-alt fa-3x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+            <div class="col-xl-3 col-md-5 mb-4 mt-2 ms-3">
+                    <div class="card border-danger border-4 border-end-0 shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2 ps-3">
+                                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                        % of Verified Users</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="verified"></div>
+                                </div>
+                                <div class="col-auto pe-5">
+                                    <i class="fas fa-user-check fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-xl-3 col-md-5 mb-4 mt-2 ms-3">
+                <div class="card border-primary border-4 border-end-0 shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2 ps-3">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Tweets Date Range </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{% for o in time %} {{ o }} {% endfor %}</div>
+                                <div class="h5 mb-0 fs-5 text-gray-800">Latest in:<span id="latest_tweet"></span></div>
+
+                            </div>
+                            <div class="col-auto pe-3">
+                                <i class="fas fa-calendar-day fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-5 mb-4 mt-2 ms-3">
+                <div class="card border-secondary border-4 border-start-0 shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2 ps-3">
+                                <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                    Max Likes </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="likeCount"></div>
+                                <div class="h5 mb-0 fs-5 text-gray-800"><a id="top_liked">Top Liked</a></div>
+
+                            </div>
+                            <div class="col-auto pe-3">
+                                <i class="fas fa-heart fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-5 mb-4 mt-2 ms-3">
+                <div class="card border-info border-4 border-end-0 shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2 ps-3">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                    Max Retweets </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="retweetCount"></div>
+                                <div class="h5 mb-0 fs-5 text-gray-800"><a id="top_shared">Top Shared</a></div>
+
+                            </div>
+                            <div class="col-auto pe-3">
+                                <i class="fas fa-retweet fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     <script>
+     fetch('/totalcount', {method: 'GET'})
+        .then(res => res.json())
+        .then(result => {document.getElementById("total_count").innerHTML = result;})
+
+    fetch('/nbofusers', {method: 'GET'})
+        .then(res => res.json())
+        .then(result => {
+            let nb = result[0]
+            let link = result[1]
+            document.getElementById("nb_of_users").innerHTML = nb;
+            document.getElementById("top_talker").setAttribute("href",link);
+        })
+
+    fetch('/latestDate', {method: 'GET'})
+        .then(res => res.json())
+        .then(result => {document.getElementById("latest_tweet").innerHTML = result;})
+
+    fetch('/verified', {method: 'GET'})
+        .then(res => res.json())
+        .then(result =>  {let r=result+'%'; document.getElementById("verified").innerHTML = r;})
+
+    fetch('/topliked', {method: 'GET'})
+        .then(res => res.json())
+        .then(result => {
+            let count=result[0]['likeCount'];
+            let link=result[0]['url'];
+            document.getElementById("likeCount").innerHTML = count;
+            document.getElementById("top_liked").setAttribute("href",link);
+        })
+
+    fetch('/topshared', {method: 'GET'})
+        .then(res => res.json())
+        .then(result => {
+            let count=result[0]['retweetCount'];
+            let link=result[0]['url'];
+            document.getElementById("retweetCount").innerHTML = count;
+            document.getElementById("top_shared").setAttribute("href",link);
+        })
+
+     </script>
+{% endblock %}

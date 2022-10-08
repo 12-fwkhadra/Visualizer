@@ -1,0 +1,117 @@
+
+#bino{
+  color: lightblue;
+  animation: discover 4s infinite;
+}
+@keyframes discover {
+0% {
+      transform: translateX(-10px) rotateY(0deg);
+    }
+    49% {
+      transform: translateX(-200px) rotateY(0deg);
+    }
+    50% {
+      transform: translateX(-200px) rotateY(360deg);
+    }
+    100% {
+      transform: translateX(-10px) rotateY(360deg);
+    }
+}
+
+.waviy {
+  position: relative;
+}
+.waviy span {
+  position: relative;
+  display: inline-block;
+  font-size: 40px;
+  color: palevioletred;
+  text-transform: uppercase;
+  animation: flip 2s infinite;
+  animation-delay: calc(.2s * var(--i))
+}
+@keyframes flip {
+  0%,80% {
+    transform: rotateY(360deg)
+  }
+}
+
+.line {
+  overflow: hidden;
+}
+.lineUp {
+  color: palevioletred;
+  font-size: 40px;
+  animation: 2s anim-lineUp ease-out infinite;
+}
+@keyframes anim-lineUp {
+  0% {
+    opacity: 0;
+    transform: translateY(80%);
+  }
+  20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+#import{
+    color: lightblue;
+  animation: discover2 4s infinite;
+}
+@keyframes discover2 {
+    100% {
+      transform: translateX(200px);
+    }
+}
+#searcher{
+    color: lightblue;
+  animation: discover3 4s linear infinite;
+}
+/*div:before { content:''; position:absolute; height:100%; width:100%; background:blue; animation:rotate 3s linear reverse infinite; }*/
+@keyframes discover3 { 100% { transform:rotate(-360deg); } }
+
+h1 {
+  color: palevioletred;
+  font-size: 40px;
+  display: inline-block;
+  opacity: 0;
+  filter: blur(5px);
+  animation: fade-in 0.8s 0.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
+
+}
+
+@keyframes fade-in {
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+.waviy2 {
+  position: relative;
+  font-size: 40px;
+}
+.waviy2 span {
+  position: relative;
+  display: inline-block;
+  color: palevioletred;
+  text-transform: uppercase;
+  animation: waviy2 1s infinite;
+  animation-delay: calc(.1s * var(--i));
+
+}
+@keyframes waviy2 {
+  0%,40%,100% {
+    transform: translateY(0)
+  }
+  20% {
+    transform: translateY(-20px)
+  }
+}

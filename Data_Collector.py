@@ -24,12 +24,12 @@ def fetcher():
         the results will be saved in json files in the same directory
     '''
     csv_path = path_finder()
-    topics = pd.read_csv(fr'%s' % csv_path, names=['Topic'])
-    for topic in topics['Topic']:
+    topics = pd.read_csv(fr'%s' % csv_path, names=['Topic', 'number'])
+    for topic, nb in zip(topics['Topic'], topics['number']):
         tweets = []
         for i, tweet in enumerate(
                 sntwitter.TwitterHashtagScraper(f'{topic} since:2018-06-01 until:2019-11-30').get_items()):
-            if i > 100000:  # nb of tweets to be collected
+            if i > nb:  # nb of tweets to be collected
                 break
             tweets.append(tweet.json())
 
@@ -39,4 +39,4 @@ def fetcher():
 
         time.sleep(1)
 
-
+fetcher()

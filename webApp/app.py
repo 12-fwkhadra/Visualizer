@@ -18,16 +18,16 @@ client = MongoClient("mongodb+srv://fk1:mongodb22@cluster0.7mt03q2.mongodb.net/?
 database = client["tester"]
 
 col = database["khashoggi"]
-names = database.get_collectionNames()
+# names = database.get_collectionNames()
 
-col = ''
+
 
 class myClass:
     def __init__(self, name):
         self.name = name
 
-    for name in names:
-        col = name
+    # for name in names:
+    #     col = name
 
 
 @app.route('/')
@@ -37,13 +37,13 @@ def home():
 
 @app.route('/Dashboard')
 def dashboard():
-    return render_template('Dashboard.html', names)
+    return render_template('Dashboard.html')
 
-@app.route('/Dashboard', methods=['POST'])
-def dashboard():
-    n=request.form.get('topic_to_select')
-    nn=myClass(n)
-    return render_template('Dashboard.html', names)
+# @app.route('/Dashboard', methods=['POST'])
+# def dashboard():
+#     n=request.form.get('topic_to_select')
+#     nn=myClass(n)
+#     return render_template('Dashboard.html', names)
 
 @app.route('/sentimentals')
 def sentiments():
@@ -232,7 +232,7 @@ def countries():
 def top_hashtags():
     tweets = []
     data = open(
-        fr'F:\Al Maaref Uni\Second Year 2021-2022\Summer 21-22\Practical Training\myFinal\{col}.json',
+        r'F:\Al Maaref Uni\Second Year 2021-2022\Summer 21-22\Practical Training\myFinal\khashoggi.json',
         "r", encoding="utf8")
     for line in data:
         tweets.append(json.loads(line))
